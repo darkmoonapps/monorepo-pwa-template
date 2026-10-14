@@ -1,12 +1,12 @@
 import { DEFAULT_THEME, mergeMantineTheme } from '@mantine/core';
 import { describe, expect, it } from 'vitest';
-import { appTheme } from './app-theme';
-import { mint, renderedLightBadges, themeTokens, wisteria } from './colors';
+import { defaultTheme } from './app-theme';
+import { brand, renderedLightBadges, success, themeTokens } from './colors';
 import { contrastRatio, meetsWcagAaText, meetsWcagAaUi } from './contrast';
 
-const theme = mergeMantineTheme(DEFAULT_THEME, appTheme);
+const theme = mergeMantineTheme(DEFAULT_THEME, defaultTheme);
 
-function resolvedLightBadge(color: 'mint' | 'red'): {
+function resolvedLightBadge(color: 'success' | 'red'): {
   color: string;
   background: string;
 } {
@@ -22,7 +22,7 @@ function resolvedLightBadge(color: 'mint' | 'red'): {
   };
 }
 
-describe('Wisteria & mint contrast', () => {
+describe('default theme contrast', () => {
   it('meets WCAG AA for light-theme body and dimmed text', () => {
     expect(
       meetsWcagAaText(themeTokens.light.text, themeTokens.light.body)
@@ -33,19 +33,21 @@ describe('Wisteria & mint contrast', () => {
   });
 
   it('meets WCAG AA for the light badges Mantine actually renders', () => {
-    const mintBadge = resolvedLightBadge('mint');
+    const successBadge = resolvedLightBadge('success');
     const redBadge = resolvedLightBadge('red');
 
-    expect(mintBadge).toEqual(renderedLightBadges.mint);
+    expect(successBadge).toEqual(renderedLightBadges.success);
     expect(redBadge).toEqual(renderedLightBadges.red);
-    expect(mintBadge.color).toBe(mint[7]);
-    expect(mintBadge.color).not.toBe(mint[6]);
+    expect(successBadge.color).toBe(success[7]);
+    expect(successBadge.color).not.toBe(success[6]);
 
-    expect(meetsWcagAaText(mintBadge.color, mintBadge.background)).toBe(true);
+    expect(meetsWcagAaText(successBadge.color, successBadge.background)).toBe(
+      true
+    );
     expect(meetsWcagAaText(redBadge.color, redBadge.background)).toBe(true);
     expect(
-      contrastRatio(mintBadge.color, mintBadge.background)
-    ).toBeGreaterThan(contrastRatio(mint[6], mint[1]));
+      contrastRatio(successBadge.color, successBadge.background)
+    ).toBeGreaterThan(contrastRatio(success[6], success[1]));
   });
 
   it('meets WCAG AA for light-theme primary buttons', () => {
@@ -87,8 +89,8 @@ describe('Wisteria & mint contrast', () => {
     ).toBe(true);
   });
 
-  it('keeps brand wisteria as a recognizable mid-scale swatch', () => {
-    expect(wisteria[4]).toBe('#A99BE0');
-    expect(contrastRatio('#FFFFFF', wisteria[6])).toBeGreaterThanOrEqual(4.5);
+  it('keeps the default brand swatch as a recognizable mid-scale color', () => {
+    expect(brand[4]).toBe('#A99BE0');
+    expect(contrastRatio('#FFFFFF', brand[6])).toBeGreaterThanOrEqual(4.5);
   });
 });

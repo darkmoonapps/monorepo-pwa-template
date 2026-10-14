@@ -11,8 +11,8 @@ const preview: Preview = {
         title: 'Theme',
         icon: 'mirror',
         items: [
-          { value: 'light', title: 'Wisteria & mint' },
-          { value: 'dark', title: 'Deep plum' },
+          { value: 'light', title: 'Default' },
+          { value: 'dark', title: 'Dark' },
         ],
         dynamicTitle: true,
       },

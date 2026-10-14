@@ -50,11 +50,26 @@ product you are building.
 
 ### Installation
 
+One command (version checks, install, `.env` files, Postgres, migrate, fake
+seed, codegen):
+
+```bash
+pnpm run setup
+pnpm dev
+```
+
+Optional: `pnpm run setup --rename my-product` replaces the `app` / `@app/*`
+placeholders. pnpm’s CLI `setup` command is unrelated — always use
+`pnpm run setup`.
+
+Manual steps:
+
 ```bash
 pnpm install
 docker compose up -d
 pnpm db:generate
 pnpm --filter @app/api prisma migrate dev
+pnpm --filter @app/api exec prisma db seed
 pnpm dev
 ```
 
@@ -76,7 +91,9 @@ pnpm format
 pnpm format:check
 pnpm typecheck
 
+pnpm run setup
 pnpm db:generate
+pnpm db:seed
 pnpm --filter @app/api prisma migrate dev
 pnpm --filter @app/api prisma studio
 
@@ -145,12 +162,12 @@ See [ADR 0009](docs/adr/0009-testing-strategy.md).
 - Explicit return types and parameter types
 
 ```typescript
-interface ExampleItem {
+interface Item {
   name: string;
   id: string;
 }
 
-function formatItemName(data: ExampleItem): string {
+function formatItemName(data: Item): string {
   return data.name.toUpperCase();
 }
 ```
@@ -172,16 +189,17 @@ Before opening a PR:
 ### 4. Internationalization
 
 - Never hardcode UI strings — use `t('key')`
-- Support Hebrew (RTL) and English (LTR)
+- Support Hebrew (RTL) and English (LTR). Languages and the default theme are
+  configurable.
 - Namespaces:
 
   - `common.json` — shared UI
-  - `example.json` — sample feature namespace (replace with your features)
+  - `items.json` — sample `items` feature namespace (replace with your features)
   - `auth.json` — authentication
   - `validation.json` — form validation
 
 ```typescript
-const { t } = useTranslation('example');
+const { t } = useTranslation('items');
 <Button>{t('placeholder')}</Button>
 ```
 
@@ -220,7 +238,7 @@ Format: `<type>(<scope>): <description>`
 
 Examples:
 
-- `feat(web): add example resource details screen`
+- `feat(web): add items details screen`
 - `fix(api): handle missing database connection`
 - `docs: update setup instructions in README`
 - `test(web): add health card tests`

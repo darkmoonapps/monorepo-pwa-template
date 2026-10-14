@@ -8,7 +8,7 @@ import { renderedLightBadges } from './colors';
 function isOverriddenLightColor(
   color: string
 ): color is keyof typeof renderedLightBadges {
-  return color === 'mint' || color === 'red';
+  return color === 'success' || color === 'red';
 }
 
 export const variantColorResolver: VariantColorsResolver = (input) => {

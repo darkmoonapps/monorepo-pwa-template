@@ -3,13 +3,13 @@ import '@mantine/core';
 declare module '@mantine/core' {
   interface MantineThemeOther {
     brand: {
-      wisteria: string;
-      mint: string;
-      plum: string;
+      primary: string;
+      success: string;
+      dark: string;
     };
     semantic: {
-      success: 'mint';
-      accent: 'wisteria';
+      success: 'success';
+      accent: 'brand';
     };
   }
 }

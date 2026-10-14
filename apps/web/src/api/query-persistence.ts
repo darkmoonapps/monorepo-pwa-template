@@ -6,31 +6,25 @@ import {
 } from '@tanstack/react-query';
 import type { Persister } from '@tanstack/react-query-persist-client';
 
-export const EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT =
-  'example-resource-details' as const;
+export const ITEMS_QUERY_ROOT = 'items' as const;
 
-export const QUERY_CACHE_STORAGE_KEY = 'app-example-query-cache';
+export const QUERY_CACHE_STORAGE_KEY = 'app-items-query-cache';
 
 export const QUERY_PERSIST_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
-export function exampleResourceDetailsQueryKey(
-  resourceId: string
-): readonly [typeof EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT, string] {
-  return [EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT, resourceId];
+export function itemDetailsQueryKey(
+  itemId: string
+): readonly [typeof ITEMS_QUERY_ROOT, string] {
+  return [ITEMS_QUERY_ROOT, itemId];
 }
 
-export function isExampleResourceDetailsQueryKey(
-  queryKey: readonly unknown[]
-): boolean {
-  return queryKey[0] === EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT;
+export function isItemDetailsQueryKey(queryKey: readonly unknown[]): boolean {
+  return queryKey[0] === ITEMS_QUERY_ROOT;
 }
 
-export function shouldPersistExampleResourceDetailsQuery(
-  query: Query
-): boolean {
+export function shouldPersistItemDetailsQuery(query: Query): boolean {
   return (
-    defaultShouldDehydrateQuery(query) &&
-    isExampleResourceDetailsQueryKey(query.queryKey)
+    defaultShouldDehydrateQuery(query) && isItemDetailsQueryKey(query.queryKey)
   );
 }
 
@@ -47,7 +41,7 @@ export function createQueryClient(): QueryClient {
   });
 }
 
-export function createExampleResourcePersister(throttleTime = 1000): Persister {
+export function createItemDetailsPersister(throttleTime = 1000): Persister {
   return createSyncStoragePersister({
     storage: window.localStorage,
     key: QUERY_CACHE_STORAGE_KEY,

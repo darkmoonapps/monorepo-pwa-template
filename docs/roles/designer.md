@@ -173,10 +173,10 @@ A Designer's work is complete when:
 
 ### Color Palette
 
-- **Wisteria** `#A99BE0` is the primary brand scale
-- **Mint** `#A8E6CF` is the success / Delivered accent
-- **Deep plum** `#1E1A2E` is the dark-theme background
-- Light default is a pastel Wisteria & mint theme; dark uses brightened accents
+- **Brand** `#A99BE0` is the default primary scale (change in `colors.ts`)
+- **Success** `#A8E6CF` is the generic success accent
+- **Neutral** `#1E1A2E` is the dark-theme background
+- The shipped **default** theme is configurable; dark uses brightened accents
 - Meet WCAG AA contrast requirements (verified in `packages/ui` theme tests)
 - Use Mantine's theming system in `packages/ui`
 

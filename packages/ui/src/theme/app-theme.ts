@@ -5,22 +5,22 @@ import {
 } from '@mantine/core';
 import { COLOR_SCHEME_STORAGE_KEY } from '@app/shared';
 import {
-  mint,
-  plum,
+  brand,
+  neutral,
   renderedLightBadges,
+  success,
   themeTokens,
-  wisteria,
 } from './colors';
 import { variantColorResolver } from './variant-colors';
 
 export { COLOR_SCHEME_STORAGE_KEY };
 
-export const appTheme = createTheme({
-  primaryColor: 'wisteria',
+export const defaultTheme = createTheme({
+  primaryColor: 'brand',
   colors: {
-    wisteria,
-    mint,
-    dark: plum,
+    brand,
+    success,
+    dark: neutral,
   },
   variantColorResolver,
   primaryShade: { light: 6, dark: 6 },
@@ -36,33 +36,36 @@ export const appTheme = createTheme({
   black: themeTokens.light.text,
   other: {
     brand: {
-      wisteria: wisteria[4],
-      mint: mint[3],
-      plum: plum[8],
+      primary: brand[4],
+      success: success[3],
+      dark: neutral[8],
     },
     semantic: {
-      success: 'mint',
-      accent: 'wisteria',
+      success: 'success',
+      accent: 'brand',
     },
   },
 });
+
+/** @deprecated Use `defaultTheme` — kept as an alias for existing imports. */
+export const appTheme = defaultTheme;
 
 export const cssVariablesResolver: CSSVariablesResolver = (
   theme: MantineTheme
 ) => ({
   variables: {
-    '--app-wisteria': theme.other.brand.wisteria,
-    '--app-mint': theme.other.brand.mint,
-    '--app-plum': theme.other.brand.plum,
+    '--app-brand': theme.other.brand.primary,
+    '--app-success': theme.other.brand.success,
+    '--app-neutral': theme.other.brand.dark,
   },
   light: {
     '--mantine-color-body': themeTokens.light.body,
     '--mantine-color-text': themeTokens.light.text,
     '--mantine-color-dimmed': themeTokens.light.dimmed,
     '--mantine-color-default': themeTokens.light.paper,
-    '--mantine-color-anchor': theme.colors.wisteria[7],
-    '--mantine-color-mint-light': renderedLightBadges.mint.background,
-    '--mantine-color-mint-light-color': renderedLightBadges.mint.color,
+    '--mantine-color-anchor': theme.colors.brand[7],
+    '--mantine-color-success-light': renderedLightBadges.success.background,
+    '--mantine-color-success-light-color': renderedLightBadges.success.color,
     '--mantine-color-red-light': renderedLightBadges.red.background,
     '--mantine-color-red-light-color': renderedLightBadges.red.color,
   },
@@ -73,6 +76,6 @@ export const cssVariablesResolver: CSSVariablesResolver = (
     '--mantine-color-default': themeTokens.dark.paper,
     '--mantine-color-default-hover': theme.colors.dark[6],
     '--mantine-color-default-border': theme.colors.dark[4],
-    '--mantine-color-anchor': theme.colors.wisteria[3],
+    '--mantine-color-anchor': theme.colors.brand[3],
   },
 });

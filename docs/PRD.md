@@ -9,7 +9,7 @@ Replace this file with your product requirements. This repository is a
   switches
 - NestJS health API (`GET /health` and `GET /api/health`) over Prisma/PostgreSQL
 - Shared Zod contracts and Orval-generated React Query clients
-- Example TanStack Query persistence for a generic resource-details query key
+- Example TanStack Query persistence for a generic `items` query key
 - Atomic UI package with Storybook
 - CI, CodeQL, Dependabot, Release Please, and free-tier deploy workflows
 

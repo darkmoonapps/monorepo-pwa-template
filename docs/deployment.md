@@ -280,10 +280,9 @@ pnpm --filter @app/api exec prisma migrate resolve --applied 20261014120000_init
 ## 10. TanStack Query persistence
 
 The web app uses `persistQueryClient` with `localStorage`. Only queries whose
-key starts with `example-resource-details` are persisted. Health polling is
-not persisted. Use `exampleResourceDetailsQueryKey(resourceId)` when an
-example-resource details API exists. Replace this allowlist with your own
-query keys.
+key starts with `items` are persisted. Health polling is not persisted. Use
+`itemDetailsQueryKey(itemId)` when an items details API exists. Replace this
+allowlist with your own query keys.
 
 ## 11. Out of scope
 

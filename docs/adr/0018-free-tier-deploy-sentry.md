@@ -31,7 +31,7 @@ without burning the monthly instance-hour budget.
   storage off, no-op when the DSN is missing. Tracing, Replay, and Profiling
   stay off.
 - **Client cache**: TanStack Query `persistQueryClient` + `localStorage` for
-  example-resource details keys only.
+  example `items` query keys only.
 
 Step-by-step connection, secret names, and live limit links live in
 [docs/deployment.md](../deployment.md).

@@ -28,7 +28,7 @@ function statusColor(
   connected: boolean | null
 ): string {
   if (status === 'healthy' || connected === true) {
-    return 'mint';
+    return 'success';
   }
 
   return 'red';

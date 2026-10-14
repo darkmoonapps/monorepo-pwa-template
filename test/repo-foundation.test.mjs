@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { dirname, extname, join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
 
@@ -108,21 +108,95 @@ describe('repo foundation extras', () => {
     assert.match(pkg.packageManager, /^pnpm@10\./);
   });
 
-  it('does not ship giving-day or Latet product copy', () => {
+  it('does not ship leftover product-domain copy', () => {
     const pkg = JSON.parse(readRepoFile('package.json'));
     assert.equal(pkg.name, 'app');
-    assert.doesNotMatch(pkg.description ?? '', /giving-day|latet|volunteer management/i);
+    assert.doesNotMatch(
+      pkg.description ?? '',
+      /giving-day|latet|volunteer management/i
+    );
 
     const readme = readRepoFile('README.md');
     assert.match(readme, /Use this template/);
     assert.match(readme, /docs\/deployment\.md/);
     assert.match(readme, /docs\/branch-protection\.md/);
-    assert.doesNotMatch(readme, /giving-day|Latet|יום הנתינה/i);
+    assert.match(readme, /pnpm run setup/);
+    assert.match(readme, /Starting a new project from this template/);
+    assert.match(readme, /## Troubleshooting/);
+    assert.match(readme, /Languages and the default theme are/);
 
-    const agents = readRepoFile('AGENTS.md');
-    assert.doesNotMatch(agents, /giving-day|Latet|יום הנתינה/i);
+    const skipDirs = new Set([
+      '.git',
+      'node_modules',
+      'dist',
+      'coverage',
+      '.turbo',
+      'storybook-static',
+      'playwright-report',
+      'test-results',
+      '.pnpm-store',
+    ]);
+    const textExts = new Set([
+      '.cjs',
+      '.css',
+      '.html',
+      '.js',
+      '.json',
+      '.md',
+      '.mdc',
+      '.mjs',
+      '.prisma',
+      '.sql',
+      '.toml',
+      '.ts',
+      '.tsx',
+      '.txt',
+      '.yaml',
+      '.yml',
+    ]);
+    const forbidden =
+      /giving-day|\bgiving\b|\blatet\b|\bvolunteer|\belder\b|\bwisteria\b|\bmint\b|\bplum\b|\bdelivered\b|\bdelivery\b|\bcoordinator\b|example-resource|food-package|יום הנתינה/i;
 
-    const prd = readRepoFile('docs/PRD.md');
-    assert.doesNotMatch(prd, /Latet|food-package|elder/i);
+    const hits = [];
+
+    /**
+     * @param {string} dir
+     */
+    function walk(dir) {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        if (entry.isDirectory()) {
+          if (!skipDirs.has(entry.name)) {
+            walk(join(dir, entry.name));
+          }
+          continue;
+        }
+        if (!entry.isFile()) {
+          continue;
+        }
+        const absolutePath = join(dir, entry.name);
+        const relativePath = relative(root, absolutePath).split(sep).join('/');
+        if (relativePath === 'test/repo-foundation.test.mjs') {
+          continue;
+        }
+        if (entry.name === 'pnpm-lock.yaml') {
+          continue;
+        }
+        if (
+          !textExts.has(extname(entry.name)) &&
+          !entry.name.endsWith('.env.example')
+        ) {
+          continue;
+        }
+
+        const content = readFileSync(absolutePath, 'utf8');
+        const match = forbidden.exec(content);
+        if (match !== null) {
+          hits.push(`${relativePath}: ${match[0]}`);
+        }
+      }
+    }
+
+    walk(root);
+    assert.deepEqual(hits, []);
   });
 });
