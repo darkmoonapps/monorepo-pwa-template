@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: app-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    healthCheckPath: /health
+    autoDeployTrigger: 'off'
+    buildCommand: corepack enable && corepack prepare pnpm@10.33.4 --activate && pnpm install --frozen-lockfile && pnpm --filter @app/shared build && pnpm --filter @app/api build
+    preDeployCommand: pnpm --filter @app/api exec prisma migrate deploy
+    startCommand: pnpm --filter @app/api start
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: SENTRY_ENVIRONMENT
+        value: production

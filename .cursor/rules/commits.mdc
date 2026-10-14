@@ -1,0 +1,14 @@
+---
+description: Conventional Commits and PR requirements
+alwaysApply: true
+---
+
+# Commits and PRs
+
+- Format: `<type>(<scope>): <description>`
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+- Scopes: `web`, `api`, `shared`, `ui`, `ci`, `docs`, `deps`
+- Do not push to `master`. Open a PR. The owner merges.
+- PR titles must pass Conventional Commits (squash merge uses the title).
+- Before a PR: `pnpm lint`, `pnpm typecheck`, `pnpm format:check`, `pnpm test`.
+- See `docs/adr/0008-conventional-commits.md` and `docs/branch-protection.md`.

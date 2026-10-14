@@ -1,0 +1,40 @@
+{
+  "app_name": "App",
+  "document_title": "App",
+  "welcome_title": "Welcome",
+  "welcome_subtitle": "A bilingual PWA monorepo starter",
+  "about_title": "About",
+  "about_body": "This template ships a PWA, API, and component library. Replace this copy with your product.",
+  "language": {
+    "label": "Language",
+    "he": "עברית",
+    "en": "English"
+  },
+  "color_scheme": {
+    "label": "Color scheme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "health": {
+    "title": "System Status",
+    "loading": "Checking API health...",
+    "error_title": "Error",
+    "fetch_error": "Failed to fetch health",
+    "http_error": "HTTP {{status}} error",
+    "api_status": "API Status:",
+    "database": "Database:",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "healthy": "Healthy",
+    "unhealthy": "Unhealthy",
+    "last_checked": "Last checked:",
+    "show_details": "Show details",
+    "hide_details": "Hide details"
+  },
+  "error": {
+    "unexpected_title": "Something went wrong",
+    "unexpected_body": "An unexpected error occurred. Try reloading the page.",
+    "reload": "Reload"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reusable pnpm + Turborepo bilingual PWA monorepo template",
+  "packageManager": "pnpm@10.33.4",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --filter @app/web --filter @app/api",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "db:generate": "pnpm --filter @app/api prisma:generate",
+    "test": "turbo run test -- --run && node --test test/*.test.mjs",
+    "test:ci": "turbo run test:ci && node --test test/*.test.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "codegen": "pnpm --filter @app/shared build && pnpm --filter @app/api openapi:generate && pnpm --filter @app/web codegen",
+    "codegen:check": "bash scripts/check-generated.sh",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.64.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.4.2",
+    "turbo": "^2.5.8",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
+  }
+}
