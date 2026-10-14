@@ -3,11 +3,11 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import { AppThemeProvider } from '@app/ui';
 import { useState, type ReactNode } from 'react';
 import {
-  createExampleResourcePersister,
+  createItemDetailsPersister,
   createQueryClient,
   QUERY_PERSIST_MAX_AGE_MS,
   shouldDehydrateMutation,
-  shouldPersistExampleResourceDetailsQuery,
+  shouldPersistItemDetailsQuery,
 } from '../api/query-persistence';
 import { UnexpectedError } from '../components/unexpected-error';
 import { SentryErrorBoundary } from '../sentry-error-boundary';
@@ -27,7 +27,7 @@ export function AppProviders({
     () => queryClient ?? createQueryClient()
   );
   const [persister] = useState(() =>
-    queryClient === undefined ? createExampleResourcePersister() : null
+    queryClient === undefined ? createItemDetailsPersister() : null
   );
   const colorScheme = useUiStore((state) => state.colorScheme);
 
@@ -60,7 +60,7 @@ export function AppProviders({
         persister,
         maxAge: QUERY_PERSIST_MAX_AGE_MS,
         dehydrateOptions: {
-          shouldDehydrateQuery: shouldPersistExampleResourceDetailsQuery,
+          shouldDehydrateQuery: shouldPersistItemDetailsQuery,
           shouldDehydrateMutation,
         },
       }}

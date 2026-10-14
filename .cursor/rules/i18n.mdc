@@ -7,7 +7,7 @@ alwaysApply: true
 
 - Never hardcode user-facing strings. Use `t('key')` from react-i18next.
 - Default language is Hebrew (`he`, RTL). English is `en` (LTR).
-- Put strings in `apps/web/src/i18n/locales/{he,en}/` namespaces: `common`, `example`, `auth`, `validation`. Add a namespace per product feature; do not keep unused product copy.
+- Put strings in `apps/web/src/i18n/locales/{he,en}/` namespaces: `common`, `items`, `auth`, `validation`. Add a namespace per product feature; do not keep unused product copy. Languages are configurable.
 - `packages/ui` is i18n-agnostic: pass already-translated strings as props.
 - Test both directions. Update `document.documentElement.lang` and `dir` on language change.
 - See `docs/adr/0006-bilingual-i18n-rtl-ltr.md`.

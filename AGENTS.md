@@ -162,12 +162,12 @@ See [ADR 0009](docs/adr/0009-testing-strategy.md).
 - Explicit return types and parameter types
 
 ```typescript
-interface ExampleItem {
+interface Item {
   name: string;
   id: string;
 }
 
-function formatItemName(data: ExampleItem): string {
+function formatItemName(data: Item): string {
   return data.name.toUpperCase();
 }
 ```
@@ -189,16 +189,17 @@ Before opening a PR:
 ### 4. Internationalization
 
 - Never hardcode UI strings — use `t('key')`
-- Support Hebrew (RTL) and English (LTR)
+- Support Hebrew (RTL) and English (LTR). Languages and the default theme are
+  configurable.
 - Namespaces:
 
   - `common.json` — shared UI
-  - `example.json` — sample feature namespace (replace with your features)
+  - `items.json` — sample `items` feature namespace (replace with your features)
   - `auth.json` — authentication
   - `validation.json` — form validation
 
 ```typescript
-const { t } = useTranslation('example');
+const { t } = useTranslation('items');
 <Button>{t('placeholder')}</Button>
 ```
 
@@ -237,7 +238,7 @@ Format: `<type>(<scope>): <description>`
 
 Examples:
 
-- `feat(web): add example resource details screen`
+- `feat(web): add items details screen`
 - `fix(api): handle missing database connection`
 - `docs: update setup instructions in README`
 - `test(web): add health card tests`

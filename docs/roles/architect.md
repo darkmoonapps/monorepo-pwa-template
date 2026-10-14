@@ -217,7 +217,7 @@ apps/web/src/
 └── hooks/            # Custom React hooks
 
 apps/api/src/
-├── [feature]/       # Feature modules (items, example-resources)
+├── [feature]/       # Feature modules (for example `items`)
 │   ├── [feature].controller.ts
 │   ├── [feature].service.ts
 │   ├── [feature].module.ts

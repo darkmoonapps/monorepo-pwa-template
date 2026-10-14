@@ -124,7 +124,9 @@ The frontend needs a technology stack for building the PWA that:
 - Pin Mantine to v9.x to avoid breaking changes from major version bumps
 - Use Mantine's `DirectionProvider` for RTL/LTR and `MantineProvider` for theming
 - Shared presentational components live in `packages/ui` and are documented in Storybook
-- Default theme is light pastel **Wisteria & mint**; dark theme uses deep plum `#1E1A2E`
+- Default theme uses a generic `brand` primary scale and a `success` token;
+  dark theme uses a neutral `#1E1A2E` body. Tokens in `colors.ts` are
+  configurable.
 - Color scheme follows the OS by default, can be overridden in the header, and is saved
 - Theme tokens must meet WCAG AA contrast
 - Configure Vite's `vite-plugin-pwa` for service worker and manifest generation

@@ -196,8 +196,8 @@ export function createRenameReplacements(projectName) {
 
   return [
     {
-      from: 'app-example-query-cache',
-      to: `${projectName}-example-query-cache`,
+      from: 'app-items-query-cache',
+      to: `${projectName}-items-query-cache`,
     },
     { from: 'app-postgres', to: `${projectName}-postgres` },
     { from: 'app-api', to: `${projectName}-api` },

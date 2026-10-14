@@ -180,7 +180,7 @@ describe('PrimaryActionButton', () => {
 <Button>Confirm</Button>
 
 // ✅ GOOD
-const { t } = useTranslation('example');
+const { t } = useTranslation('items');
 <Button>{t('confirm_button')}</Button>
 ```
 
@@ -189,12 +189,12 @@ const { t } = useTranslation('example');
 ```typescript
 // ✅ GOOD: Well-structured component
 interface ItemCardProps {
-  item: ExampleItem;
+  item: Item;
   onConfirm: (id: string) => void;
 }
 
 export function ItemCard({ item, onConfirm }: ItemCardProps) {
-  const { t } = useTranslation('example');
+  const { t } = useTranslation('items');
 
   const handleConfirm = () => {
     onConfirm(item.id);

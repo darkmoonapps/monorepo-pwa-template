@@ -2,10 +2,10 @@ import { Card, Group, Stack } from '@mantine/core';
 import type { Meta, StoryObj } from '@storybook/react';
 import { AppBadge, AppButton, AppText, AppTitle } from '../atoms';
 import { AppThemeProvider } from './app-theme-provider';
-import { MINT_BRAND, PLUM_BACKGROUND, WISTERIA_BRAND } from './colors';
+import { BRAND, DARK_BACKGROUND, SUCCESS } from './colors';
 
 const meta: Meta = {
-  title: 'Theme/Wisteria and mint',
+  title: 'Theme/Default',
 };
 
 export default meta;
@@ -18,36 +18,36 @@ function ThemePreview({ title }: { title: string }): JSX.Element {
       <Stack gap="md">
         <AppTitle order={3}>{title}</AppTitle>
         <AppText>
-          Pastel wisteria primary {WISTERIA_BRAND} with mint {MINT_BRAND} for
-          success states. Change tokens in colors.ts to rebrand.
+          Default theme primary {BRAND} with success {SUCCESS}. Change tokens in
+          colors.ts to rebrand. Languages and theme are configurable.
         </AppText>
         <Group>
           <AppButton>Primary action</AppButton>
           <AppButton variant="light">Secondary</AppButton>
-          <AppBadge color="mint" variant="light">
+          <AppBadge color="success" variant="light">
             Success
           </AppBadge>
-          <AppBadge color="wisteria" variant="light">
-            Wisteria
+          <AppBadge color="brand" variant="light">
+            Brand
           </AppBadge>
         </Group>
         <AppText c="dimmed" size="sm">
-          Deep plum background token {PLUM_BACKGROUND} is used in dark mode.
+          Dark background token {DARK_BACKGROUND} is used in dark mode.
         </AppText>
       </Stack>
     </Card>
   );
 }
 
-export const LightWisteriaAndMint: Story = {
-  name: 'Light — Wisteria & mint',
-  render: () => <ThemePreview title="Wisteria & mint" />,
+export const LightDefault: Story = {
+  name: 'Light — Default',
+  render: () => <ThemePreview title="Default" />,
 };
 
-export const DarkDeepPlum: Story = {
-  name: 'Dark — Deep plum',
+export const DarkNeutral: Story = {
+  name: 'Dark',
   globals: { theme: 'dark' },
-  render: () => <ThemePreview title="Deep plum" />,
+  render: () => <ThemePreview title="Dark" />,
 };
 
 export const BothThemes: Story = {
@@ -55,10 +55,10 @@ export const BothThemes: Story = {
   render: () => (
     <Group align="stretch" grow>
       <AppThemeProvider forceColorScheme="light">
-        <ThemePreview title="Wisteria & mint" />
+        <ThemePreview title="Default" />
       </AppThemeProvider>
       <AppThemeProvider forceColorScheme="dark">
-        <ThemePreview title="Deep plum" />
+        <ThemePreview title="Dark" />
       </AppThemeProvider>
     </Group>
   ),

@@ -193,7 +193,7 @@ describe('rename replacements', () => {
         'DATABASE_URL="postgresql://app:app_dev@localhost:5432/app?schema=public"',
       'color-scheme.ts': "export const COLOR_SCHEME_STORAGE_KEY = 'app-ui';",
       'query-persistence.ts':
-        "export const QUERY_CACHE_STORAGE_KEY = 'app-example-query-cache';",
+        "export const QUERY_CACHE_STORAGE_KEY = 'app-items-query-cache';",
       'configure-app.ts': ".setTitle('App API')",
       'release-please-config.json': '"package-name": "app"',
     };
@@ -218,7 +218,7 @@ describe('rename replacements', () => {
       /postgresql:\/\/acme:acme_dev@localhost:5432\/acme/
     );
     assert.match(byPath['color-scheme.ts'], /'acme-ui'/);
-    assert.match(byPath['query-persistence.ts'], /acme-example-query-cache/);
+    assert.match(byPath['query-persistence.ts'], /acme-items-query-cache/);
     assert.match(byPath['configure-app.ts'], /setTitle\('Acme API'\)/);
     assert.match(
       byPath['release-please-config.json'],

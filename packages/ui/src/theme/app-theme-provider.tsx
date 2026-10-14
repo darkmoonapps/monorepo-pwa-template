@@ -4,7 +4,7 @@ import {
   type MantineColorScheme,
 } from '@mantine/core';
 import type { ReactNode } from 'react';
-import { appTheme, cssVariablesResolver } from './app-theme';
+import { defaultTheme, cssVariablesResolver } from './app-theme';
 
 export interface AppThemeProviderProps {
   children: ReactNode;
@@ -25,7 +25,7 @@ export function AppThemeProvider({
       detectDirection={false}
     >
       <MantineProvider
-        theme={appTheme}
+        theme={defaultTheme}
         defaultColorScheme={defaultColorScheme}
         forceColorScheme={forceColorScheme}
         cssVariablesResolver={cssVariablesResolver}

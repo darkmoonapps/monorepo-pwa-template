@@ -36,7 +36,7 @@ export async function initI18n(): Promise<typeof i18n> {
         // Omit `lng` so LanguageDetector can restore a saved localStorage value.
         supportedLngs: [...SUPPORTED_LANGUAGES],
         defaultNS,
-        ns: ['common', 'example', 'auth', 'validation'],
+        ns: ['common', 'items', 'auth', 'validation'],
         interpolation: {
           escapeValue: false,
         },

@@ -12,8 +12,8 @@ type Story = StoryObj<typeof AppBadge>;
 
 export const Healthy: Story = {
   args: {
-    children: 'Delivered',
-    color: 'mint',
+    children: 'Success',
+    color: 'success',
     variant: 'light',
   },
 };

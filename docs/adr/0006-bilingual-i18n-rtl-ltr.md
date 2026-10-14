@@ -67,12 +67,12 @@ production bundle share the same source of truth:
 apps/web/src/i18n/locales/
 ├── he/
 │   ├── common.json
-│   ├── example.json
+│   ├── items.json
 │   ├── auth.json
 │   └── validation.json
 └── en/
     ├── common.json
-    ├── example.json
+    ├── items.json
     ├── auth.json
     └── validation.json
 ```
@@ -83,7 +83,7 @@ apps/web/src/i18n/locales/
 import { useTranslation } from 'react-i18next';
 
 function MyComponent() {
-  const { t } = useTranslation('example');
+  const { t } = useTranslation('items');
   return <Button>{t('placeholder')}</Button>;
 }
 ```
@@ -171,7 +171,7 @@ t('greeting', { name: itemName });
 ### Namespaces
 
 - `common`: Shared UI (buttons, navigation, errors)
-- `example`: Sample feature namespace (replace with your product namespaces)
+- `items`: Sample items feature namespace (replace with your product namespaces)
 - `auth`: Login and authentication
 - `validation`: Form validation messages
 

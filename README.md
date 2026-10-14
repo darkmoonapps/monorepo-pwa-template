@@ -7,9 +7,10 @@ Use it when you want a ready foundation: pnpm workspaces, Turborepo, a React 19
 PWA, a NestJS API, shared Zod contracts, and an atomic UI package — without any
 product-specific domain.
 
-The skeleton ships a health-check example (API + PostgreSQL + a persisted query
-cache), not a real feature. Replace the home copy, PWA name, theme tokens, and
-Prisma models with your own.
+The skeleton ships a health-check example (API + PostgreSQL + a persisted `items`
+query cache), not a real feature. Replace the home copy, PWA name, theme tokens,
+and Prisma models with your own. **Languages and the default theme are
+configurable.**
 
 ## Contents
 
@@ -257,7 +258,7 @@ Format: `<type>(<scope>): <description>`
 **Scopes**: `web`, `api`, `shared`, `ui`, `ci`, `docs`, `deps` (scope may be
 omitted when a change spans several areas)
 
-Examples: `feat(web): add example resource details screen`,
+Examples: `feat(web): add items details screen`,
 `fix(api): handle missing database connection`,
 `docs: update setup instructions in README`.
 
@@ -354,8 +355,8 @@ pnpm test:e2e:ui
 
 ### Storybook
 
-Visual catalog for `@app/ui` (light wisteria/mint and dark plum). The package is
-i18n-agnostic: stories pass already-translated strings as props.
+Visual catalog for `@app/ui` (default light theme and dark scheme). The package
+is i18n-agnostic: stories pass already-translated strings as props.
 
 ```bash
 pnpm --filter @app/ui storybook
@@ -366,8 +367,10 @@ CI builds Storybook to catch broken stories.
 
 ## Internationalization and RTL
 
-Hebrew is the default language and RTL is the default direction. English is LTR.
-Never hardcode user-facing strings — use `t('key')`.
+Hebrew (`he`, RTL) and English (`en`, LTR) ship as the starter pair.
+**Languages are configurable**: add a locale folder under
+`apps/web/src/i18n/locales/`, register it in `resources.ts`, and extend
+`SUPPORTED_LANGUAGES`. Never hardcode user-facing strings — use `t('key')`.
 [ADR 0006](docs/adr/0006-bilingual-i18n-rtl-ltr.md).
 
 Namespaces under `apps/web/src/i18n/locales/{he,en}/`:
@@ -375,12 +378,12 @@ Namespaces under `apps/web/src/i18n/locales/{he,en}/`:
 | File              | Use                                                           |
 | ----------------- | ------------------------------------------------------------- |
 | `common.json`     | Shared chrome, health card, errors, language and theme labels |
-| `example.json`    | Sample feature namespace (replace with your features)         |
+| `items.json`      | Sample `items` feature namespace (replace with your features) |
 | `auth.json`       | Authentication copy                                           |
 | `validation.json` | Form validation messages                                      |
 
 ```typescript
-const { t } = useTranslation('example');
+const { t } = useTranslation('items');
 <Button>{t('placeholder')}</Button>
 ```
 
@@ -394,20 +397,22 @@ directions (Playwright already covers the language switch).
 
 ## Theming tokens
 
-Tokens live in [`packages/ui/src/theme/colors.ts`](packages/ui/src/theme/colors.ts).
-Change the constants (and the matching palettes) to rebrand. Keep WCAG AA
-contrast (4.5:1 text, 3:1 UI) — `contrast.test.ts` enforces it.
+The starter ships a **default** theme. **Theme tokens are configurable**: edit
+[`packages/ui/src/theme/colors.ts`](packages/ui/src/theme/colors.ts) (and the
+matching palettes) to rebrand. Keep WCAG AA contrast (4.5:1 text, 3:1 UI) —
+`contrast.test.ts` enforces it.
 
-| Token            | Light                        | Dark                         |
-| ---------------- | ---------------------------- | ---------------------------- |
-| Primary / accent | Wisteria `#A99BE0`           | Brightened wisteria          |
-| Success          | Mint `#A8E6CF`               | Mint on a deep green surface |
-| Body / paper     | Pastel wisteria wash / white | Deep plum `#1E1A2E`          |
+| Token            | Light                      | Dark                              |
+| ---------------- | -------------------------- | --------------------------------- |
+| Primary / accent | `brand` `#A99BE0`          | Brightened `brand`                |
+| Success          | `success` `#A8E6CF`        | `success` on a deep green surface |
+| Body / paper     | Light `brand` wash / white | Neutral `#1E1A2E`                 |
 
-Mantine `createTheme` in `app-theme.ts` maps those palettes to CSS variables
-(`--app-wisteria`, `--app-mint`, `--app-plum`, plus Mantine body/text/paper).
-Color scheme defaults to the OS preference (`auto`) and is persisted in Zustand
-under `COLOR_SCHEME_STORAGE_KEY` (`app-ui` until you rename).
+Mantine `createTheme` (`defaultTheme` in `app-theme.ts`) maps those palettes to
+CSS variables (`--app-brand`, `--app-success`, `--app-neutral`, plus Mantine
+body/text/paper). Color scheme defaults to the OS preference (`auto`) and is
+persisted in Zustand under `COLOR_SCHEME_STORAGE_KEY` (`app-ui` until you
+rename).
 
 Storybook’s theme toolbar switches light vs dark. PWA `theme_color` in
 `apps/web/vite.config.ts` should stay aligned with the primary token.
@@ -479,7 +484,7 @@ project’s git history.
    pnpm run setup --rename my-product
    ```
    `--rename` replaces `app` / `@app/*`, `app-api`, Docker/Postgres names,
-   storage keys (`app-ui`, `app-example-query-cache`), the root package name,
+   storage keys (`app-ui`, `app-items-query-cache`), the root package name,
    and the OpenAPI title across package names and configs. It does **not**
    rewrite Hebrew/English marketing copy, theme hex tokens, or PWA icon PNGs —
    do those by hand.

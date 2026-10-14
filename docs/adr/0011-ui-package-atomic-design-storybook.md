@@ -20,7 +20,8 @@ Create **`packages/ui` (`@app/ui`)** as an atomic-design library:
 - **Atoms** - thin Mantine wrappers (`AppButton`, `AppText`, `AppTitle`, `AppBadge`, `AppLoader`, `AppAlert`)
 - **Molecules** - composed controls (`LanguageSwitcher`, `ColorSchemeToggle`, `LabeledStatus`, `LoadingState`)
 - **Organisms** - page-level layout (`AppHeader`, `AppPageShell`, `HealthStatusCard`)
-- **Theme** - Mantine `createTheme` with a light pastel **Wisteria & mint** palette and a dark **deep plum** scheme
+- **Theme** - Mantine `createTheme` named **default**, with a generic `brand`
+  primary scale, a `success` token, and a dark **neutral** scheme
 
 Document every exported component in **Storybook**. The package is
 i18n-agnostic: it receives already-translated strings as props so Hebrew and
@@ -62,7 +63,8 @@ RTL-aware primitives.
 
 - Storybook runs from `packages/ui` (`pnpm --filter @app/ui storybook`)
 - Shared types such as `LanguageCode` come from `@app/shared`
-- Light theme: wisteria `#A99BE0` primary scale, mint `#A8E6CF` for success/Delivered
-- Dark theme: deep plum `#1E1A2E` body with brightened wisteria/mint accents
+- Default light theme: `brand` `#A99BE0` primary scale, `success` `#A8E6CF`
+- Dark theme: neutral `#1E1A2E` body with brightened brand/success accents
+- Languages and theme tokens are configurable
 - Color scheme defaults to the OS preference (`auto`) and is persisted in Zustand
 - Theme tokens are checked against WCAG AA (4.5:1 text, 3:1 UI)

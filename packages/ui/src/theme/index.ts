@@ -2,20 +2,21 @@ export {
   appTheme,
   COLOR_SCHEME_STORAGE_KEY,
   cssVariablesResolver,
+  defaultTheme,
 } from './app-theme';
 export {
   AppThemeProvider,
   type AppThemeProviderProps,
 } from './app-theme-provider';
 export {
-  MINT_BRAND,
-  PLUM_BACKGROUND,
-  WISTERIA_BRAND,
-  mint,
-  plum,
+  BRAND,
+  DARK_BACKGROUND,
+  SUCCESS,
+  brand,
+  neutral,
   renderedLightBadges,
+  success,
   themeTokens,
-  wisteria,
 } from './colors';
 export { variantColorResolver } from './variant-colors';
 export {

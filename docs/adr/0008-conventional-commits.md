@@ -46,7 +46,7 @@ Adopt **Conventional Commits** specification and enforce it in CI.
 **Examples**:
 
 ```
-feat(web): add example resource details screen
+feat(web): add items details screen
 fix(api): handle missing database connection
 docs: update README with setup instructions
 test(web): add tests for the health card

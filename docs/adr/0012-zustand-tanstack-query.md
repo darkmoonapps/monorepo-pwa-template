@@ -62,5 +62,5 @@ deduplication.
 
 - Language preference stays in i18next/`localStorage` (`i18nextLng`), not Zustand
 - QueryClient is provided once at the app root
-- `persistQueryClient` writes example-resource details queries to
+- `persistQueryClient` writes example `items` details queries to
   `localStorage`. Other server state (including health) is not persisted.

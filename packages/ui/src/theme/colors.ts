@@ -3,17 +3,18 @@ import type { MantineColorsTuple } from '@mantine/core';
 /**
  * Default theme tokens. Change these constants (and the matching palettes
  * below) to rebrand. Keep WCAG AA contrast — see `contrast.test.ts`.
+ * Languages and this default theme are configurable.
  */
-export const WISTERIA_BRAND = '#A99BE0';
-export const MINT_BRAND = '#A8E6CF';
-export const PLUM_BACKGROUND = '#1E1A2E';
+export const BRAND = '#A99BE0';
+export const SUCCESS = '#A8E6CF';
+export const DARK_BACKGROUND = '#1E1A2E';
 
-export const wisteria: MantineColorsTuple = [
+export const brand: MantineColorsTuple = [
   '#F8F5FC',
   '#EEE7F8',
   '#DED3F2',
   '#C4B6E8',
-  WISTERIA_BRAND,
+  BRAND,
   '#8B76D0',
   '#6A54B5',
   '#544194',
@@ -21,11 +22,11 @@ export const wisteria: MantineColorsTuple = [
   '#2E2452',
 ];
 
-export const mint: MantineColorsTuple = [
+export const success: MantineColorsTuple = [
   '#F3FBF8',
   '#DFF5EC',
   '#C5EDDC',
-  MINT_BRAND,
+  SUCCESS,
   '#7DD4B3',
   '#4EBE94',
   '#2F9A74',
@@ -34,7 +35,7 @@ export const mint: MantineColorsTuple = [
   '#144533',
 ];
 
-export const plum: MantineColorsTuple = [
+export const neutral: MantineColorsTuple = [
   '#F4F0FA',
   '#E3DDEC',
   '#C6BED8',
@@ -43,29 +44,29 @@ export const plum: MantineColorsTuple = [
   '#564D72',
   '#3A3454',
   '#2A2540',
-  PLUM_BACKGROUND,
+  DARK_BACKGROUND,
   '#141022',
 ];
 
 export const themeTokens = {
   light: {
-    body: wisteria[0],
+    body: brand[0],
     paper: '#FFFFFF',
-    text: plum[8],
+    text: neutral[8],
     dimmed: '#5A5470',
-    primaryFilled: wisteria[6],
+    primaryFilled: brand[6],
     primaryFilledText: '#FFFFFF',
-    successBackground: mint[1],
-    successText: mint[7],
-    accent: WISTERIA_BRAND,
-    successAccent: MINT_BRAND,
+    successBackground: success[1],
+    successText: success[7],
+    accent: BRAND,
+    successAccent: SUCCESS,
   },
   dark: {
-    body: PLUM_BACKGROUND,
-    paper: plum[7],
-    text: plum[0],
-    dimmed: plum[2],
-    primaryFilled: wisteria[6],
+    body: DARK_BACKGROUND,
+    paper: neutral[7],
+    text: neutral[0],
+    dimmed: neutral[2],
+    primaryFilled: brand[6],
     primaryFilledText: '#FFFFFF',
     successBackground: '#1F4A3A',
     successText: '#C8F5E4',
@@ -78,9 +79,9 @@ export const MANTINE_RED_1 = '#ffe3e3';
 export const MANTINE_RED_9 = '#c92a2a';
 
 export const renderedLightBadges = {
-  mint: {
-    color: mint[7],
-    background: mint[1],
+  success: {
+    color: success[7],
+    background: success[1],
   },
   red: {
     color: MANTINE_RED_9,

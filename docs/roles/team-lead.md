@@ -200,12 +200,12 @@ No.
 This function uses `any` which bypasses type safety.
 Consider defining an interface for the resource data:
 
-interface ExampleItem {
+interface Item {
   name: string;
   phone: string;
 }
 
-function processItem(item: ExampleItem) {
+function processItem(item: Item) {
   // ...
 }
 ```
@@ -216,7 +216,7 @@ Great job on the test coverage here! The edge cases are well-handled.
 
 ```
 This string is hardcoded, but we need to use i18n. Can you add it to
-`example.json` and use `t('key_name')` instead?
+`items.json` and use `t('key_name')` instead?
 ```
 
 ## Common Tasks

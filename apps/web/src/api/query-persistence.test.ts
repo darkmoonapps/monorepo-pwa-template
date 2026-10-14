@@ -2,38 +2,34 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { afterEach, describe, expect, it } from 'vitest';
 import { waitFor } from '@testing-library/react';
 import {
-  EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT,
+  ITEMS_QUERY_ROOT,
   QUERY_CACHE_STORAGE_KEY,
-  createExampleResourcePersister,
-  exampleResourceDetailsQueryKey,
-  isExampleResourceDetailsQueryKey,
+  createItemDetailsPersister,
+  itemDetailsQueryKey,
+  isItemDetailsQueryKey,
   shouldDehydrateMutation,
-  shouldPersistExampleResourceDetailsQuery,
+  shouldPersistItemDetailsQuery,
 } from './query-persistence';
 
-describe('example-resource query persistence', () => {
+describe('items query persistence', () => {
   afterEach(() => {
     window.localStorage.clear();
   });
 
-  it('identifies example-resource details query keys', () => {
-    expect(
-      isExampleResourceDetailsQueryKey(exampleResourceDetailsQueryKey('item-1'))
-    ).toBe(true);
-    expect(isExampleResourceDetailsQueryKey(['/api/health'])).toBe(false);
-    expect(exampleResourceDetailsQueryKey('item-1')[0]).toBe(
-      EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT
-    );
+  it('identifies items details query keys', () => {
+    expect(isItemDetailsQueryKey(itemDetailsQueryKey('item-1'))).toBe(true);
+    expect(isItemDetailsQueryKey(['/api/health'])).toBe(false);
+    expect(itemDetailsQueryKey('item-1')[0]).toBe(ITEMS_QUERY_ROOT);
   });
 
   it('does not persist mutations', () => {
     expect(shouldDehydrateMutation()).toBe(false);
   });
 
-  it('persists only example-resource details queries to localStorage', async () => {
+  it('persists only items details queries to localStorage', async () => {
     const queryClient = new QueryClient();
-    queryClient.setQueryData(exampleResourceDetailsQueryKey('item-1'), {
-      title: 'Example resource',
+    queryClient.setQueryData(itemDetailsQueryKey('item-1'), {
+      title: 'Example item',
       notes: 'Cached for offline use',
     });
     queryClient.setQueryData(['/api/health'], {
@@ -44,7 +40,7 @@ describe('example-resource query persistence', () => {
 
     const detailsQuery = queryClient
       .getQueryCache()
-      .find({ queryKey: exampleResourceDetailsQueryKey('item-1') });
+      .find({ queryKey: itemDetailsQueryKey('item-1') });
     const healthQuery = queryClient
       .getQueryCache()
       .find({ queryKey: ['/api/health'] });
@@ -52,21 +48,21 @@ describe('example-resource query persistence', () => {
     expect(detailsQuery).toBeDefined();
     expect(healthQuery).toBeDefined();
     if (detailsQuery === undefined || healthQuery === undefined) {
-      throw new Error('expected health and example-resource queries');
+      throw new Error('expected health and items queries');
     }
-    expect(shouldPersistExampleResourceDetailsQuery(detailsQuery)).toBe(true);
-    expect(shouldPersistExampleResourceDetailsQuery(healthQuery)).toBe(false);
+    expect(shouldPersistItemDetailsQuery(detailsQuery)).toBe(true);
+    expect(shouldPersistItemDetailsQuery(healthQuery)).toBe(false);
 
     const clientState = dehydrate(queryClient, {
-      shouldDehydrateQuery: shouldPersistExampleResourceDetailsQuery,
+      shouldDehydrateQuery: shouldPersistItemDetailsQuery,
       shouldDehydrateMutation,
     });
     expect(clientState.queries).toHaveLength(1);
     expect(clientState.queries[0]?.queryKey).toEqual(
-      exampleResourceDetailsQueryKey('item-1')
+      itemDetailsQueryKey('item-1')
     );
 
-    void createExampleResourcePersister(0).persistClient({
+    void createItemDetailsPersister(0).persistClient({
       timestamp: Date.now(),
       buster: '',
       clientState,
@@ -74,7 +70,7 @@ describe('example-resource query persistence', () => {
 
     await waitFor(() => {
       const stored = window.localStorage.getItem(QUERY_CACHE_STORAGE_KEY);
-      expect(stored).toContain(EXAMPLE_RESOURCE_DETAILS_QUERY_ROOT);
+      expect(stored).toContain(ITEMS_QUERY_ROOT);
       expect(stored).toContain('item-1');
       expect(stored).not.toContain('/api/health');
     });
