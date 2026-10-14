@@ -50,11 +50,26 @@ product you are building.
 
 ### Installation
 
+One command (version checks, install, `.env` files, Postgres, migrate, fake
+seed, codegen):
+
+```bash
+pnpm run setup
+pnpm dev
+```
+
+Optional: `pnpm run setup --rename my-product` replaces the `app` / `@app/*`
+placeholders. pnpm’s CLI `setup` command is unrelated — always use
+`pnpm run setup`.
+
+Manual steps:
+
 ```bash
 pnpm install
 docker compose up -d
 pnpm db:generate
 pnpm --filter @app/api prisma migrate dev
+pnpm --filter @app/api exec prisma db seed
 pnpm dev
 ```
 
@@ -76,7 +91,9 @@ pnpm format
 pnpm format:check
 pnpm typecheck
 
+pnpm run setup
 pnpm db:generate
+pnpm db:seed
 pnpm --filter @app/api prisma migrate dev
 pnpm --filter @app/api prisma studio
 

@@ -111,12 +111,18 @@ describe('repo foundation extras', () => {
   it('does not ship giving-day or Latet product copy', () => {
     const pkg = JSON.parse(readRepoFile('package.json'));
     assert.equal(pkg.name, 'app');
-    assert.doesNotMatch(pkg.description ?? '', /giving-day|latet|volunteer management/i);
+    assert.doesNotMatch(
+      pkg.description ?? '',
+      /giving-day|latet|volunteer management/i
+    );
 
     const readme = readRepoFile('README.md');
     assert.match(readme, /Use this template/);
     assert.match(readme, /docs\/deployment\.md/);
     assert.match(readme, /docs\/branch-protection\.md/);
+    assert.match(readme, /pnpm run setup/);
+    assert.match(readme, /Starting a new project from this template/);
+    assert.match(readme, /## Troubleshooting/);
     assert.doesNotMatch(readme, /giving-day|Latet|יום הנתינה/i);
 
     const agents = readRepoFile('AGENTS.md');

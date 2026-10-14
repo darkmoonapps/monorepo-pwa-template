@@ -14,8 +14,12 @@
     "openapi:generate": "tsx scripts/generate-openapi.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
     "postinstall": "prisma generate"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@app/shared": "workspace:*",
