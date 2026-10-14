@@ -1,0 +1,16 @@
+---
+description: TypeScript and code-quality standards for this monorepo
+alwaysApply: true
+---
+
+# Quality
+
+- TypeScript `strict: true`. Never use `any`; use `unknown` and narrow.
+- Never use `@ts-ignore` or `@ts-expect-error` unless unavoidable, with a comment.
+- Explicit parameter types and return types.
+- Small, focused PRs. One feature or fix per PR.
+- No circular dependencies. Keep packages (`web`, `api`, `shared`, `ui`) at their boundaries.
+- Do not commit secrets or `.env` files. Only `.env.example`.
+- Validate API input with class-validator. Keep CORS origins in `CORS_ORIGINS`.
+- Semantic HTML, keyboard access, visible focus, WCAG AA contrast.
+- After changing OpenAPI controllers or DTOs, run `pnpm codegen` and commit the spec and Orval client.

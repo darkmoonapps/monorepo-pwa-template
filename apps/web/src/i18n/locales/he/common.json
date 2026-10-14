@@ -1,0 +1,40 @@
+{
+  "app_name": "אפליקציה",
+  "document_title": "אפליקציה",
+  "welcome_title": "ברוכים הבאים",
+  "welcome_subtitle": "נקודת התחלה לאפליקציית PWA דו-לשונית",
+  "about_title": "אודות",
+  "about_body": "תבנית זו מספקת ממשק PWA, API וספריית רכיבים. החליפו את הטקסט הזה בתוכן של המוצר שלכם.",
+  "language": {
+    "label": "שפה",
+    "he": "עברית",
+    "en": "English"
+  },
+  "color_scheme": {
+    "label": "ערכת צבע",
+    "light": "בהיר",
+    "dark": "כהה",
+    "system": "מערכת"
+  },
+  "health": {
+    "title": "מצב המערכת",
+    "loading": "בודק את תקינות ה-API...",
+    "error_title": "שגיאה",
+    "fetch_error": "טעינת מצב המערכת נכשלה",
+    "http_error": "שגיאת HTTP {{status}}",
+    "api_status": "מצב API:",
+    "database": "מסד נתונים:",
+    "connected": "מחובר",
+    "disconnected": "מנותק",
+    "healthy": "תקין",
+    "unhealthy": "לא תקין",
+    "last_checked": "נבדק לאחרונה:",
+    "show_details": "הצג פרטים",
+    "hide_details": "הסתר פרטים"
+  },
+  "error": {
+    "unexpected_title": "משהו השתבש",
+    "unexpected_body": "אירעה שגיאה לא צפויה. נסו לטעון מחדש את העמוד.",
+    "reload": "טען מחדש"
+  }
+}

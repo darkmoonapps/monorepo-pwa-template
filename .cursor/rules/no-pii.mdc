@@ -1,0 +1,11 @@
+---
+description: No real personal data in the repository
+alwaysApply: true
+---
+
+# No personal data
+
+- Never commit real names, phones, emails, addresses, or other PII in seeds, fixtures, tests, comments, or screenshots.
+- Use obviously fake data (`user@example.com`, `+972-50-0000000`, "Test User").
+- Sentry must keep `sendDefaultPii: false` and the shared PII scrubber.
+- See `docs/adr/0007-no-personal-data-in-repo.md`.

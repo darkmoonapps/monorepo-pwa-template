@@ -1,0 +1,13 @@
+---
+description: Testing requirements for web, API, and Playwright
+alwaysApply: true
+---
+
+# Testing
+
+- Every behavior change needs tests. PRs without tests for features or fixes are incomplete.
+- Web: Vitest + React Testing Library. Prefer `getByRole` and `data-testid`, not hardcoded copy that i18n will change.
+- Mock `fetch` with `vi.stubGlobal` and clean up with `vi.unstubAllGlobals`.
+- API: Vitest + Supertest. Cover connected and disconnected health/database cases.
+- E2E: Playwright against `api start` + `web preview` in CI; wait for `GET :3001/api/health`.
+- See `docs/adr/0009-testing-strategy.md`.
