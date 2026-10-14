@@ -19,13 +19,13 @@ function ThemePreview({ title }: { title: string }): JSX.Element {
         <AppTitle order={3}>{title}</AppTitle>
         <AppText>
           Pastel wisteria primary {WISTERIA_BRAND} with mint {MINT_BRAND} for
-          success and Delivered states.
+          success states. Change tokens in colors.ts to rebrand.
         </AppText>
         <Group>
           <AppButton>Primary action</AppButton>
           <AppButton variant="light">Secondary</AppButton>
           <AppBadge color="mint" variant="light">
-            Delivered
+            Success
           </AppBadge>
           <AppBadge color="wisteria" variant="light">
             Wisteria

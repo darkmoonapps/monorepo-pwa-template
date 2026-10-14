@@ -9,7 +9,7 @@ declare module '@mantine/core' {
     };
     semantic: {
       success: 'mint';
-      delivered: 'mint';
+      accent: 'wisteria';
     };
   }
 }
